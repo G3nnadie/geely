@@ -11,44 +11,36 @@ $(document).ready(function () {
     headerHieght();
   });
 
-  // Scroll spee
-  // $('.address').on('click','a', function (event) {
-  //   event.preventDefault();
-  //   var id  = $(this).attr('href'),
-  //     top = $(id).offset().top;
-  //     $('body,html').animate({scrollTop: top}, 800);
-  // });
+  // Menu mobail
+  $('.navbar-toggle--open').on('click', function() {
+    $('.header__data').slideDown( 200, function() {});
+  });
 
-  // Show menu mobail
-  // $('.navbar-toggle').click(function () {
-  //   $(this).toggleClass('active');
-  //   $('.nav').toggleClass('open');
-  // });
+  $('.navbar-toggle--close').on('click', function() {
+    $('.header__data').slideUp( 200, function() {});
+  });
 
-  // Header add class
-  // $(window).scroll(function() { 
-  //   var top = $(document).scrollTop();
-  //   if (top > 0) {
-  //     $('.header').addClass('scroll-page');
-  //   }
-  //   else {
-  //     $('.header').removeClass('scroll-page');
-  //   }
-  // });
+   // Modal
+  $('.open-modal-feedback').on('click', function(e) {
+    e.preventDefault();
+    $('.modal--feedback').fadeIn(200);
+  });
 
-  // Hidden nav
-  // $(document).click(function(event) {
-  //   if ($(event.target).closest('.navbar-toggle').length 
-  //     || $(event.target).closest('.nav').length ) return;
-  //     $('.nav').removeClass('open');
-  //     $('.navbar-toggle').removeClass('active');
-  //     event.stopPropagation();
-  // });
+  $('.modal__close').on('click', function() {
+    $('.modal').fadeOut(200);
+  });
+
+  $('.modal').mouseup(function (e) {
+    let modalContent = $(".modal__box");
+    if (!modalContent.is(e.target) && modalContent.has(e.target).length === 0) {
+      $(this).fadeOut(200);
+    }
+  });
 
   // Maskedinput
-  // $(function($){
-  //   $('.phone-mask').mask(('+7 ') + '(999) 999-99-99');
-  // });
+  $(function($){
+    $('.phone-mask').mask(('+7 ') + '(999) 999-99-99');
+  });
 
   // Accardion
   var accordion = function() {
@@ -70,7 +62,7 @@ $(document).ready(function () {
     observeSlideChildren: true,
     observeParents: true,
     autoplay: {
-      delay: 3000,
+      delay: 5000,
     },
     pagination: {
       el: ".swiper-pagination",
@@ -83,26 +75,27 @@ $(document).ready(function () {
     },
   });
 
+  // Stock
+  var swiper = new Swiper(".stock__sl", {
+    spaceBetween: 0,
+    slidesPerView: 1,
+    observer: true,
+    observeSlideChildren: true,
+    observeParents: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      768: {
+        spaceBetween: 10,
+        slidesPerView: 2,
+      },
+      1200: {
+        spaceBetween: 30,
+        slidesPerView: 3,
+      }
+    },
+  });
+
 });
-
-// Map
-// ymaps.ready(init);
-// var myMap, 
-//     myPlacemark;
-
-// function init(){ 
-//   myMap = new ymaps.Map("map", {
-//     center: [55.77511086, 37.61463844],
-//     zoom: 16,
-//     controls: ['zoomControl']
-//   });
-  
-//   myPlacemark = new ymaps.Placemark([55.77511086, 37.61463844], {});
-  
-//   myMap.geoObjects.add(myPlacemark);
-//   myMap.behaviors.disable([
-//     'drag',
-//     'scrollZoom'
-//   ]);
-
-// }
